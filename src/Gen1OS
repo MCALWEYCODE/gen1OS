@@ -1,0 +1,206 @@
+#!/usr/bin/python3
+import os;
+import os;
+import sys;
+import cv2;
+import vlc;
+import random;
+import psutil;
+import playsound;
+import ip_address as ip;
+
+import numpy as np;
+
+from time import sleep;
+from datetime import datetime;
+from ffpyplayer.player import MediaPlayer;
+
+# src/runtime
+runtimeFiles = ["photo.png", "photo2.png"];
+fname = "file.txt";
+
+# Srry i'm bad at drawing
+distro_logo = """\033[A
+   /--------\\
+   |
+   |
+   |    <---\\
+   |        |
+   \--------/""";
+
+now = datetime.now();
+# This shit is taking up 3 seconds to boot, fixed using -f to shove some fake data
+if ("f" not in sys.argv[1]):
+  import GPUtil;
+  import cpuinfo;
+  import platform;
+
+  try:    ip = ip.get();
+  except: print("No wireless LAN, using loop device as localhost");
+  cpu_name = cpuinfo.get_cpu_info()['brand_raw'];
+  gpus     = GPUtil.getGPUs();
+else:
+  print("Fast mode enabled, using loop device as localhost");
+  cpu_name = "Gen1 CPU 30-32";
+  gpus     = "Gen1 GPU 640'280 2 Ultra";
+  ip       = "127.0.0.1";            # localhost
+
+# Number of dots to print
+num_dots = 15;
+
+# Clear is accessible just through \033[H\033[2J why even try to bother with system();?
+print(end="\033[H\033[2J");
+num = 54676;
+
+osi = ("\033[91mROM: 2048 MB\nRAM: 512 MB\nCPU: AREibl Core 4tm 6453f\nGPU: BVideo GP670\033[0m");
+
+def playVideo():
+  file1 = input("Enter the path to the MP4 video file: ");
+  cap = cv2.VideoCapture(file1);
+  player = MediaPlayer(file1);
+  while (1):
+    grabbed, frame=cap.read();
+    audio_frame, val = player.get_frame();
+    if (not grabbed):
+      print("End of video");
+      break;
+    if (cv2.waitKey(28) & 0xFF == ord("q")):
+      break;
+    cv2.imshow("Video", frame);
+    if (val != "eof" and audio_frame is not None):
+      #audio
+      img, t = audio_frame;
+  cap.release();
+  cv2.destroyAllWindows();
+
+print("\033[91mP.O.S.T. code\033[0m");
+sleep(.2);
+p2 = vlc.MediaPlayer(r"W:\gen1OS\Music\Nima Fakhrara — Your Choice.mp3")
+p3 = vlc.MediaPlayer(r"W:\gen1OS\Music\XvallariX_-_SEXY_BATMAN_79057716.mp3")
+p4 = vlc.MediaPlayer(r"W:\gen1OS\Music\Philip Sheppard — Little One .mp3")
+p5 = vlc.MediaPlayer(r"W:\gen1OS\Music\Nima Fakhrara — Your Choice.mp3")
+# my_cpuinfo = cpuinfo.get_cpu_info()
+print("\033[92msuccess\033[0m");
+sleep(.2);
+print("\033[92msuccess\033[0m");
+print("start");
+
+yyy = "hi";
+
+for i in range(10):
+  print(end=".", flush=1);
+  sleep(.1);
+print();
+
+sleep(.3);
+print("\033[H\033[2J");
+sleep(.3);
+print("/// IDLE /// hetlim.IIFP /// 1.4un /// <PaH-yyUi> ///") # NOTE: what even is this?
+sleep(.5);
+while (1): # orig: for i in range(9425764): bro wtf are you even doing?
+  cc = input("\033[92m> \033[0m");
+  comm = cc.split();
+
+  if (not cc): continue;
+  if (cc == "exit"):
+    exit(0);
+  if (cc == "calc.html5"):
+    print(eval(input("Enter expression: ")));
+  elif (cc == "login"): # NOTE: I don't know what to say here, this is ridiculous
+    print("Fatal AP.IP.Oi")
+    ccc = input("Data users: ")
+    if ccc == "GGG952":
+      for iii in range(num_dots):
+          print(".", end="", flush=True)
+          time.sleep(1)
+      sys.stdout.write("\n")
+      print("connect succesful!")
+      sleep(.4);
+      for ii in range(num):
+        print("\033[H\033[2J");
+        u = input("DFonline/: ")
+        if (u == "logout"):
+          print("succesful")
+          sleep(.6);
+          break
+        else:
+          pass
+        if (u == "calc.html5"):
+          print(yyy);
+        else:
+          pass
+    else:
+      pass
+  elif (cc == "music.mp3"):
+    opuip = int(input("selected track: "))
+    exec(f"p{opuip+1}.play();");
+    # if opuip == 1:
+    #   p2.play()
+    # elif (opuip == 2):
+    #   p3.play()
+    # elif (opuip == 3):
+    #   p4.play()
+    # elif (opuip == 4):
+    #   p5.play()
+    # else:
+    #   pass
+  elif (comm[0] == "stop"):
+    p2.stop();
+    p3.stop();
+    p4.stop();
+    p5.stop();
+  elif (comm[0] in runtimeFiles):
+    with open(comm[0], "r") as fl:
+      print(fl.read());
+  elif (comm[0] == "help"):
+    print("""
+\033[A\033[92mPC info:\t\t\033[93minfo\033[92m
+Calculator:\t\t\033[93mcalc.html5\033[92m
+Clear a terminal:\t\033[93mc\033[92m
+Only your ip:\t\t\033[93mip.html5\033[92m
+Open a photo:\t\t\033[93mphoto.png or photo2.png\033[92m
+Open a video:\t\t\033[93mfilm.vhs\033[92m
+Open music:\t\t\033[93mmusic.mp3\033[92m
+Read text file:\t\t\033[93mread\033[92m
+Delete a file:\t\t\033[93mdelete\033[92m
+Reopen a file:\t\t\033[93mwriter\033[92m
+Append to a file:\t\033[93mwrite\033[92m\033[0m""");
+  elif (cc == "info"):
+    print(f"               OS: {os.uname().sysname} {os.uname().nodename} {os.uname().release}");
+    print(f"               CPU: {cpu_name}");
+    print(f"               GPU: {gpus}");
+    print(f"               RAM: {psutil.virtual_memory().total / 1024 / 1024 / 1024:.3f} GiB");
+    print("               IP:", ip);
+    print(end=f"\033[{len(distro_logo.split(chr(10)))-2}A");
+    print(distro_logo);
+  elif (cc == "c"):
+    print("\033[H\033[2J");
+  elif (cc == "ip.html5"):
+    print(ip);
+  elif (cc == "film"):
+    playVideo();
+  elif (cc == "read"):
+    with open(f"runtime/{fname}", "r") as file:
+      content = file.read();
+      print(content);
+  elif (cc == "write"):
+    with open(f"runtime/{fname}", "a") as file:
+      ternem = input("write there: ");
+      content = file.writelines(ternem);
+      file.write("\n");
+      print(content);
+  elif (cc == "writer"):
+    with open(f"runtime/{fname}", "w") as file:
+      dst = input("write there: ");
+      content = file.write(dst);
+      print(content);
+  elif (cc == "del"):
+    with open(f"runtime/{fname}", "a") as file:
+      content = file.writelines("");
+      print(content);
+  elif (cc == "delete"):
+    with open(f"runtime/{fname}", "w") as file:
+      content = file.write("");
+      print(content);
+  else:
+    print(f"\033[91mSyntax error\n  unknown command: \033[93m{comm[0]}\033[0m");

@@ -1,0 +1,2 @@
+test file designed for writing
+maybe if i was less lazy, i could've remade the `ed` editor to work in this OS
