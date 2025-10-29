@@ -1,4 +1,4 @@
 My project
 gen1OS
-<genetic one's operation system>
+<genetic one's operating system>
 i'ts console programm
